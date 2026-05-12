@@ -66,9 +66,9 @@ const Header = () => {
                 className="flex items-center gap-x-2 bg-[#FBF7F0] rounded-full p-[6px_16px_6px_6px] cursor-pointer"
               >
                 <span className="w-9 h-9 rounded-full bg-[#D9E5DC] flex items-center justify-center text-[#1F2F28] font-semibold text-base">
-                  Z
+                  H
                 </span>
-                <span className="text-base text-[#1F2F28]">Zayniddin</span>
+                <span className="text-base text-[#1F2F28]">Hafizillo</span>
                 <span
                   className={`transition-transform ${
                     isOpen ? "rotate-180" : ""
