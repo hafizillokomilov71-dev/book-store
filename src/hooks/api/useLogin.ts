@@ -1,16 +1,14 @@
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import type { IForm } from "../../pages/sign-up";
+import type { IFormLogin } from "../../pages/sign-in";
 
-export const useRegister = () => {
-  const onRegister = async (form: IForm) => {
+export const useLogin = () => {
+  const onLogin = async (form: IFormLogin) => {
     return await axios.post(
-      "http://localhost:3001/api/auth/register",
+      "http://localhost:3001/api/auth/login",
       {
-        fullName: form.fullname,
         email: form.email,
         password: form.password,
-        confirmPassword: form.confirm_password,
       },
       {
         headers: {
@@ -21,8 +19,8 @@ export const useRegister = () => {
   };
 
   const { data, isPending, isSuccess, isError, mutateAsync } = useMutation({
-    mutationKey: ["register"],
-    mutationFn: (formData: IForm) => onRegister(formData),
+    mutationKey: ["login"],
+    mutationFn: (formData: IFormLogin) => onLogin(formData),
   });
 
   return { data, isPending, isSuccess, isError, mutateAsync };

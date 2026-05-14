@@ -5,30 +5,29 @@ import Icon from "../components/ui/icon";
 import Input from "../components/ui/input";
 import { useForm } from "react-hook-form";
 import Button from "../components/ui/button";
-import { useRegister } from "../hooks/api/register";
+import { useLogin } from "../hooks/api/useLogin";
 import { useEffect } from "react";
 import { setItem } from "../utils/localstorege";
-import { toast } from "sonner";
+import {toast} from"react-toastify"
 
-export interface IForm {
-  fullname: string;
+export interface IFormLogin{
   email: string;
   password: string;
-  confirm_password: string;
 }
 
 const SignIn = () => {
-  const form = useForm<IForm>();
-  const { data, isPending, isSuccess, isError, mutateAsync } = useRegister();
+  const form = useForm<IFormLogin>();
+  const { data, isPending, isSuccess, isError, mutateAsync } = useLogin();
   const navigate = useNavigate();
-  const onSend = (formData: IForm) => {
+  const onSend = (formData: IFormLogin) => {
     mutateAsync(formData);
   };
   useEffect(() => {
     if (isSuccess) {
       const token: string = data?.data.token;
+      const user : any = data?.data.user;
       setItem(token);
-      toast.success("you have registered!!!");
+      toast.success("you have logged in!!!");
       navigate("/");
     }
   }, [isSuccess]);
@@ -56,6 +55,7 @@ const SignIn = () => {
         >
           <p className="mt-3 mb-9">Sign in to your account</p>
           <Input
+            required
             name="email"
             placeholder="john@gmail.com"
             type="email"
@@ -63,13 +63,14 @@ const SignIn = () => {
             label="Email"
           />
           <Input
+            required
             name="password"
             placeholder="Min 8 chars"
             type="password"
             form={form}
             label="Password"
           />{" "}
-          <Button type="submit" className="!bg-[#2A3D33]">
+          <Button type="submit" className="!bg-[#2A3D33]" isLoading={isPending}>
             Sign In
           </Button>
           <div className="flex items-center justify-between">

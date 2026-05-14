@@ -8,9 +8,9 @@ import Button from "../components/ui/button";
 import { useRegister } from "../hooks/api/register";
 import { useEffect } from "react";
 import { setItem } from "../utils/localstorege";
-import { toast } from "sonner";
+import { toast } from "react-toastify";
 
-export interface IForm {
+export interface IFormRegister {
   fullname: string;
   email: string;
   password: string;
@@ -18,10 +18,10 @@ export interface IForm {
 }
 
 const SignUp = () => {
-  const form = useForm<IForm>();
+  const form = useForm<IFormRegister>();
   const { data, isPending, isSuccess, isError, mutateAsync } = useRegister();
   const navigate = useNavigate();
-  const onSend = (formData: IForm) => {
+  const onSend = (formData: IFormRegister) => {
     mutateAsync(formData);
   };
   useEffect(() => {
@@ -32,6 +32,11 @@ const SignUp = () => {
       navigate("/");
     }
   }, [isSuccess]);
+  useEffect(() => {
+    if (isError) {
+      toast.error("somthing went wrong !!!");
+    }
+  }, [isError]);
   return (
     <div className="flex h-screen">
       <div className="sign-up-left flex items-center justify-center h-full w-[50%]">
@@ -56,6 +61,7 @@ const SignUp = () => {
         >
           <p className="mt-3 mb-9">Create your account</p>
           <Input
+            required
             name="fullname"
             placeholder="John Doe"
             type="text"
@@ -63,6 +69,7 @@ const SignUp = () => {
             label="Full name"
           />
           <Input
+            required
             name="email"
             placeholder="john@gmail.com"
             type="email"
@@ -71,6 +78,7 @@ const SignUp = () => {
           />
           <div className="flex gap-x-3">
             <Input
+              required
               name="password"
               placeholder="Min 8 chars"
               type="password"
@@ -78,6 +86,7 @@ const SignUp = () => {
               label="Password"
             />{" "}
             <Input
+              required
               name="confirm_password"
               placeholder="Min 8 chars"
               type="password"
@@ -85,7 +94,7 @@ const SignUp = () => {
               label="Confirm Password"
             />
           </div>
-          <Button type="submit" className="!bg-[#2A3D33]">
+          <Button type="submit" className="!bg-[#2A3D33]" isLoading={isPending}>
             Create Account
           </Button>
           <div className="flex items-center justify-between">

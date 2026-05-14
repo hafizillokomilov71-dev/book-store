@@ -1,5 +1,18 @@
 import { create } from "zustand";
-import type { IUser } from "../types/user.type";
+
+interface IUser {
+  id:  string;
+  fullName:  string;
+  username:  string;
+  email: string;
+  bio: string;
+  phone: string;
+  country: string;
+  avatar: null;
+  role: "admin" | "user"
+  createdAt: string;
+  updatedAt: string;  
+}
 
 interface IUserStore {
   user: any;
