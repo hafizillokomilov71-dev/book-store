@@ -3,10 +3,20 @@ import type { ReactNode } from "react";
 
 interface IProps {
   children: ReactNode;
-  color: string;
+  color?: string;
+  type?: "button" | "submit" | "reset";
+  className: string;
 }
 
-const Button = ({ children, color }: IProps) => {
-  return <FlowBiteButton color={color}>{children}</FlowBiteButton>;
+const Button = ({ children, type, className, color }: IProps) => {
+  return (
+    <FlowBiteButton
+      type={type ? type : "button"}
+      className={`${className} cursor-pointer hover:opacity-65`}
+      color={color}
+    >
+      {children}
+    </FlowBiteButton>
+  );
 };
 export default Button;
