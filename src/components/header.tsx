@@ -106,12 +106,12 @@ const Header = () => {
                 </button>
                 {isOpen && (
                   <div className="absolute right-0 top-full mt-2 w-52 bg-white rounded-2xl shadow-lg border border-[#EFE7DA] p-2 z-50">
-                    <a
-                      href=""
+                    <Link
+                      to="profile"
                       className="block px-4 py-2 text-sm text-[#1F2F28] hover:bg-[#FBF7F0] rounded-xl"
                     >
                       Profile
-                    </a>
+                    </Link>
                     <a
                       href=""
                       className="block px-4 py-2 text-sm text-[#1F2F28] hover:bg-[#FBF7F0] rounded-xl"

@@ -1,5 +1,6 @@
 import Button from "../components/ui/button";
 import Input from "../components/ui/input";
+import { useUserStore } from "../store/user.store";
 
 const mockForm = {
   register: (_name: string) => ({}),
@@ -14,15 +15,17 @@ const navItems = [
 ];
 
 const Profile = () => {
+  const userStore = useUserStore()
+  console.log(userStore);
   return (
-    <div className="min-h-screen bg-[#F5F0E8] flex">
+    <div className="min-h-screen bg-[#F5F0E8] mt-5 flex">
       {/* Sidebar */}
       <aside className="w-52 shrink-0 border-r border-gray-200 pt-10 px-4">
         <div className="flex flex-col items-center mb-8">
           <div className="w-20 h-20 rounded-full bg-teal-500 flex items-center justify-center text-white text-3xl font-semibold mb-3">
-            Z
+            {userStore.user?.fullName[0]}
           </div>
-          <p className="font-semibold text-gray-800 text-sm">Zayniddin</p>
+          <p className="font-semibold text-gray-800 text-sm">{userStore.user?.fullName}</p>
           <p className="text-xs text-gray-500 mt-0.5">Member since 2024</p>
         </div>
 
@@ -45,7 +48,7 @@ const Profile = () => {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 px-12 py-10">
+      <main className="flex-1 px-12 py-10 bg-white">
         <h1 className="text-2xl font-semibold text-gray-800 mb-1">
           Edit Profile
         </h1>
