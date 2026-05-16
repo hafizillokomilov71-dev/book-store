@@ -6,7 +6,7 @@ interface IProps {
   color?: string;
   type?: "button" | "submit" | "reset";
   className: string;
-  isLoading?:boolean;
+  isLoading?: boolean;
 }
 
 const Button = ({ children, type, className, color, isLoading }: IProps) => {
@@ -15,6 +15,7 @@ const Button = ({ children, type, className, color, isLoading }: IProps) => {
       type={type ? type : "button"}
       className={`${className} cursor-pointer hover:opacity-65`}
       color={color}
+      disabled={isLoading}
     >
       {isLoading ? (
         <span className="flex items-center justify-center gap-2">
@@ -24,7 +25,6 @@ const Button = ({ children, type, className, color, isLoading }: IProps) => {
       ) : (
         children
       )}
-      {children}
     </FlowBiteButton>
   );
 };

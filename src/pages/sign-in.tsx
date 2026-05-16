@@ -5,32 +5,44 @@ import Icon from "../components/ui/icon";
 import Input from "../components/ui/input";
 import { useForm } from "react-hook-form";
 import Button from "../components/ui/button";
-import { useLogin } from "../hooks/api/useLogin";
 import { useEffect } from "react";
 import { setItem } from "../utils/localstorege";
-import {toast} from"react-toastify"
+import { toast } from "react-toastify";
+import { useLogin } from "../hooks/api/useLogin";
+import { useUserStore } from "../store/user.store";
+import type { IUserResponse } from "../types/user.type";
 
-export interface IFormLogin{
+export interface IFormLogin {
   email: string;
   password: string;
 }
 
 const SignIn = () => {
   const form = useForm<IFormLogin>();
+  const store = useUserStore();
   const { data, isPending, isSuccess, isError, mutateAsync } = useLogin();
   const navigate = useNavigate();
   const onSend = (formData: IFormLogin) => {
     mutateAsync(formData);
   };
+
   useEffect(() => {
     if (isSuccess) {
       const token: string = data?.data.token;
-      const user : any = data?.data.user;
+      const user: IUserResponse = data?.data.user;
       setItem(token);
+      store.setUser(user);
       toast.success("you have logged in!!!");
       navigate("/");
     }
   }, [isSuccess]);
+
+  useEffect(() => {
+    if (isError) {
+      toast.error("something went wrong!!!");
+    }
+  }, [isError]);
+
   return (
     <div className="flex h-screen">
       <div className="sign-up-left flex items-center justify-center h-full w-[50%]">
@@ -55,7 +67,7 @@ const SignIn = () => {
         >
           <p className="mt-3 mb-9">Sign in to your account</p>
           <Input
-            required
+            required={true}
             name="email"
             placeholder="john@gmail.com"
             type="email"
@@ -63,9 +75,9 @@ const SignIn = () => {
             label="Email"
           />
           <Input
-            required
+            required={true}
             name="password"
-            placeholder="Min 8 chars"
+            placeholder="••••••••"
             type="password"
             form={form}
             label="Password"
@@ -82,7 +94,7 @@ const SignIn = () => {
             🔵 Continue with Google
           </Button>
           <p className="text-center">
-            Already have an account? 
+            Don't have an account? 
             <Link className="text-blue-500" to={"/sign-up"}>
               Create one
             </Link>

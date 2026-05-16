@@ -43,7 +43,7 @@ const Home = () => {
               </div>
 
               <div className="flex justify-end">
-                <div className="relative w-55 h-75 rounded-xl bg-gradient-to-br from-[#C89968] to-[#9C7548] shadow-2xl flex items-center justify-center">
+                <div className="relative w-[220px] h-[300px] rounded-xl bg-gradient-to-br from-[#C89968] to-[#9C7548] shadow-2xl flex items-center justify-center">
                   <div className="absolute inset-0 rounded-xl border border-[#B88858]/40"></div>
                   <div className="text-center px-4">
                     <h3 className="text-[#FBF7F0] font-serif text-xl leading-tight font-semibold mb-3">
