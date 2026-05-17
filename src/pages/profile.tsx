@@ -19,7 +19,6 @@ const Profile = () => {
   console.log(userStore);
   return (
     <div className="min-h-screen bg-[#F5F0E8] mt-5 flex">
-      {/* Sidebar */}
       <aside className="w-52 shrink-0 border-r border-gray-200 pt-10 px-4">
         <div className="flex flex-col items-center mb-8">
           <div className="w-20 h-20 rounded-full bg-teal-500 flex items-center justify-center text-white text-3xl font-semibold mb-3">
