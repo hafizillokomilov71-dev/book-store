@@ -28,6 +28,7 @@ const Profile = () => {
           <p className="font-semibold text-gray-800 text-sm">{userStore.user?.fullName}</p>
           <p className="text-xs text-gray-500 mt-0.5">Member since 2024</p>
         </div>
+
         <nav className="space-y-1">
           {navItems.map((item) => (
             <a
