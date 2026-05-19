@@ -125,13 +125,13 @@ const Header = () => {
                       Settings
                     </a>
                     <hr className="my-1 border-[#EFE7DA]" />
-                    <button
-                      type="button"
-                      className="w-full text-left px-4 py-2 text-sm text-[#FF3B30] hover:bg-[#FBF7F0] rounded-xl cursor-pointer"
-                      onClick={onLogout}
-                    >
-                      Logout
-                    </button>
+                        <button
+                          type="button"
+                          className="w-full text-left px-4 py-2 text-sm text-[#FF3B30] hover:bg-[#FBF7F0] rounded-xl cursor-pointer"
+                          onClick={onLogout}
+                        >
+                          Logout
+                        </button>
                   </div>
                 )}
               </div>
